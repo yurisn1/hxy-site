@@ -1,0 +1,37 @@
+<form (ngSubmit)="registerColaborator()" >
+    <div class="form-group">
+        <label for="name">Nome</label>
+        <input type="text" name="name" class="form-control"  value="{{this.colaborator.name}}" [(ngModel)]="colaborator.name" maxlength="100"  required >
+    </div>
+    <div *ngIf="colaborator.name.invalid" class="alert">
+        <div *ngIf="colaborator.name.errors?.['required']">
+            O nome é obrigatório.
+        </div>
+        <div *ngIf="colaborator.name.errors?.['maxlength']">
+            O nome deve ter no máximo 100 caracteres.
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="name">Email</label>
+        <input type="email" name="email" class="form-control" [(ngModel)]="colaborator.email" maxlength="100" required>
+    </div>
+    <div class="form-group">
+        <label for="name">CPF</label>
+        <input type="text" name="cpf" class="form-control" [(ngModel)]="colaborator.cpf" mask="000.000.000-00" maxlength = "14" required>
+    </div>
+    <div class="form-group">
+        <label for="name">Celular</label>
+        <input type="text" name="phone" class="form-control" [(ngModel)]="colaborator.phone" mask="(00) 00000-0000">
+    </div>
+    <label for="stacks">Conhecimentos:</label>
+    <div class="row clearfix justify-content-center">
+        <div *ngFor="let stack of stacks; let i=index" class="col-md-3" id="stacks">
+            <input type="checkbox" class="btn-check" [value]="stack.value" (change)="onCheckChange(stack.value, $any($event.target)?.checked)" id="{{stack.value}}" autocomplete="off">
+            <label class="btn btn-primary w-100 m-2" for="{{stack.value}}">{{stack.description}}</label>
+        </div>
+    </div>
+  
+    <div class="text-end mt-5">
+        <button type="submit" class="btn btn-primary">Registrar</button>
+    </div>
+</form>
