@@ -1,1 +1,31 @@
-<p>colaborator works!</p>
+<div>
+    <h1>Colaboradores</h1>
+</div>
+<div class="justify-content-left">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Email</th>
+                <th scope="col">CPF</th>
+                <th scope="col">Celular</th>
+                <th scope="col">Conhecimentos</th>
+                <th scope="col">Verificação</th>
+                <th scope="col">Verificar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let colaborator of colaborators">
+                <th scope="row">{{colaborator.id}}</th>
+                <th scope="row">{{colaborator.name}}</th>
+                <th scope="row">{{colaborator.email}}</th>
+                <th scope="row">{{colaborator.cpf}}</th>
+                <th scope="row">{{colaborator.phone}}</th>
+                <th scope="row">{{colaborator.stacks}}</th>
+                <th scope="row">{{(colaborator.verification == 0)?"Não verificado":"verificado"}}</th>
+                <th scope="row"><button class="btn btn-primary">Verificar</button></th>
+            </tr>
+        </tbody>
+    </table>
+</div>
