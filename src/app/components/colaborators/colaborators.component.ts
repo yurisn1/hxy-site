@@ -1,15 +1,22 @@
 import { Component } from '@angular/core';
-import { DataService } from '../service/data.service';
+import { DataService } from '../../service/data.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-colaborator',
-  templateUrl: './colaborator.component.html',
-  styleUrls: ['./colaborator.component.css']
+  templateUrl: './colaborators.component.html',
+  styleUrls: ['./colaborators.component.css']
 })
-export class ColaboratorComponent {
-  colaborators:any;
+export class ColaboratorsComponent {
+  colaborators:any = [];
+  dtOptions: DataTables.Settings = {};
+  
   constructor(private dataService:DataService) { }
+
   ngOnInit(): void {
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+    };
     this.getColaboratorsData();
   }
 
@@ -19,8 +26,8 @@ export class ColaboratorComponent {
       this.colaborators.forEach(colaborator => {
         colaborator.stacks = JSON.parse(colaborator.stacks);
         colaborator.stacks.join(',');
-
       });
     });
   }
 }
+

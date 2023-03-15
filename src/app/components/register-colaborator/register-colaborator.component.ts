@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router'
+import { Router, ActivatedRoute } from '@angular/router'
 import { Colaborator } from 'src/app/models/colaborator';
-import { DataService } from '../service/data.service';
+import { DataService } from '../../service/data.service';
 
 @Component({
   selector: 'app-register-colaborator',
@@ -21,7 +21,7 @@ export class RegisterColaboratorComponent implements OnInit {
       {description: "TypeScript", value: 'TypeScript', id: 7},
     ];
     
-    constructor(private dataService:DataService, private route: ActivatedRoute) { }
+    constructor(private dataService:DataService, private nowRoute: ActivatedRoute, private router: Router) { }
   
     ngOnInit(): void {
       this.getNamefromURL();
@@ -40,12 +40,12 @@ export class RegisterColaboratorComponent implements OnInit {
     registerColaborator(){
       this.colaborator.stacks = JSON.stringify(this.stacksFormArray);
       this.dataService.registerColaborator(this.colaborator).subscribe(res => {
-        console.log(res);
+        this.router.navigate([this.colaborator.name, '/validar', res['id']])
       });
     }
 
     getNamefromURL(){
-      this.route.params.subscribe(params => {
+      this.nowRoute.params.subscribe(params => {
         this.colaborator.name = params['name'];
       });
     }
