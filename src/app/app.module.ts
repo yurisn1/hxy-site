@@ -3,18 +3,29 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MainComponentComponent } from './main-component/main-component.component';
+import { ColaboratorComponent } from './colaborator/colaborator.component';
+import { RegisterColaboratorComponent } from './register-colaborator/register-colaborator.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponentComponent
+    ColaboratorComponent,
+    NavbarComponent,
+    RegisterColaboratorComponent,
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
-    AppRoutingModule
+    FormsModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    NgxMaskDirective, NgxMaskPipe
   ],
-  providers: [],
+  providers: [provideNgxMask()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
