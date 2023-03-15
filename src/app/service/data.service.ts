@@ -9,6 +9,10 @@ export class DataService {
   constructor(private httpClient:HttpClient) { }
 
   getColaborators() {
-    return this.httpClient.get('http://localhost:8000/api/colaborators');
+    return this.httpClient.get('http://localhost:8001/api/colaborators');
+  }
+
+  registerColaborator(data:any) {
+    return this.httpClient.post('http://localhost:8001/api/register', data);
   }
 }
